@@ -2,13 +2,13 @@ package org.controledeestoque.model;
 
 public class Produto {
     private String nome;
-    private float preco;
+    private Double preco;
     private Integer quantidade;
 
     public Produto() {
     }
 
-    public Produto(String nome, float preco, Integer quantidade) {
+    public Produto(String nome, Double preco, Integer quantidade) {
         this.nome = nome;
         this.preco = preco;
         this.quantidade = quantidade;
@@ -22,11 +22,11 @@ public class Produto {
         this.nome = nome;
     }
 
-    public float getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 
