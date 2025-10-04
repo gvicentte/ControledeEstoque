@@ -11,10 +11,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.controledeestoque.model.Produto;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ControledeEstoqueController implements Initializable {
+public class TelaPrincipalController implements Initializable {
     private ObservableList<Produto> produtos = FXCollections.observableArrayList();
 
     @FXML
@@ -22,7 +21,7 @@ public class ControledeEstoqueController implements Initializable {
     @FXML
     private TableColumn<Produto, String> nome;
     @FXML
-    private TableColumn<Produto, Float> preco;
+    private TableColumn<Produto, Double> preco;
     @FXML
     private TableColumn<Produto, Integer> quantidade;
     @FXML
@@ -36,7 +35,7 @@ public class ControledeEstoqueController implements Initializable {
         Produto p = new Produto();
         p.setNome(txtNome.getText());
         p.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
-        p.setPreco(Float.parseFloat(txtPreco.getText()));
+        p.setPreco(Double.parseDouble(txtPreco.getText()));
         produtos.add(p); // já reflete direto na TableView
         limparCampos();
     }
