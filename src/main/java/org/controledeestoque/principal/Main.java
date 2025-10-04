@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.shape.Path;
 import javafx.stage.Stage;
+
 import org.controledeestoque.utils.PathFXML;
 
 import java.io.FileInputStream;
@@ -18,7 +19,6 @@ import static org.controledeestoque.utils.PathFXML.getPath;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        //FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = FXMLLoader.load(PathFXML.getPath("TelaPrincipal.fxml"));
         Scene scene = new Scene(root, 700, 500);
         stage.setTitle("Controle de Estoque!");
