@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.controledeestoque.model.Produto;
@@ -34,6 +31,13 @@ public class TelaPrincipalController implements Initializable {
     private TableColumn<Produto, Integer> quantidade;
     @FXML
     private Label lblValorTotal;
+    @FXML
+    private TextArea txtNome;
+    @FXML
+    private TextArea txtPreco;
+    @FXML
+    private TextArea txtQuantidade;
+    private List<Produto> array = new ArrayList<Produto>();
 
     //private static final ObservableList<Produto> listaDeProdutos =
     //            FXCollections.observableArrayList();
@@ -48,14 +52,6 @@ public class TelaPrincipalController implements Initializable {
     }
 
     public void carregarProdutos(){
-        Produto [] array = new Produto[]{
-                new Produto("Monitor LG 27 Polegadas",850.00,17),
-                new Produto("Camiseta Flamengo 2025",325.00,80),
-                new Produto("Trident Menta",1.25,100),
-                new Produto("Agua Mineral",2.75,150),
-                new Produto("Teclado Gamer",125.99,15)
-
-        };
         produtos.addAll(array);
         calcularValorTotalEstoque();
     }
@@ -66,6 +62,18 @@ public class TelaPrincipalController implements Initializable {
             total += produto.getPreco() * produto.getQuantidade();
         }
         lblValorTotal.setText(String.format("Valor Total de Estoque: R$ %.2f",total));
+    }
+
+    public void salvarForms(){
+        Produto produto = new Produto();
+        produto.setNome(txtNome.getText());
+        produto.setPreco(Double.parseDouble(txtPreco.getText()));
+        produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+        array.add(produto);
+        txtNome.clear();
+        txtPreco.clear();
+        txtQuantidade.clear();
+        carregarProdutos();
     }
 
     public void fechar(){
