@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.*;
 
 public class TelaPrincipalController implements Initializable {
-    private ObservableList<Produto> produtos = FXCollections.observableArrayList();
+    private final ObservableList<Produto> produtos = FXCollections.observableArrayList();
     @FXML
     private TableView<Produto> tableViewProdutos;
     @FXML
@@ -34,9 +34,21 @@ public class TelaPrincipalController implements Initializable {
     private TableColumn<Produto, Integer> quantidade;
     @FXML
     private Label lblValorTotal;
+    Produto [] vetor = new Produto[]{
+            new Produto("Monitor LG 27 Polegadas",850.00,17),
+            new Produto("Camiseta Flamengo 2025",325.00,80),
+            new Produto("Trident Menta",1.25,100),
+            new Produto("Agua Mineral",2.75,150),
+            new Produto("Teclado Gamer",125.99,15)
 
-    //private static final ObservableList<Produto> listaDeProdutos =
-    //            FXCollections.observableArrayList();
+    };
+    List<Produto> array = new ArrayList<Produto>(List.of(vetor));
+    @FXML
+    private TextField txtNome;
+    @FXML
+    private TextField txtPreco;
+    @FXML
+    private TextField txtQuantidade;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,19 +56,12 @@ public class TelaPrincipalController implements Initializable {
         quantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
         preco.setCellValueFactory(new PropertyValueFactory<>("preco"));
         tableViewProdutos.setItems(produtos);
-        carregarProdutos();
+        produtos.addAll(array);
+        calcularValorTotalEstoque();
     }
 
     public void carregarProdutos(){
-        Produto [] array = new Produto[]{
-                new Produto("Monitor LG 27 Polegadas",850.00,17),
-                new Produto("Camiseta Flamengo 2025",325.00,80),
-                new Produto("Trident Menta",1.25,100),
-                new Produto("Agua Mineral",2.75,150),
-                new Produto("Teclado Gamer",125.99,15)
-
-        };
-        produtos.addAll(array);
+        produtos.add(array.getLast());
         calcularValorTotalEstoque();
     }
 
@@ -66,6 +71,57 @@ public class TelaPrincipalController implements Initializable {
             total += produto.getPreco() * produto.getQuantidade();
         }
         lblValorTotal.setText(String.format("Valor Total de Estoque: R$ %.2f",total));
+    }
+
+    public void btnSalvar(){
+        Produto verify = tableViewProdutos.getSelectionModel().getSelectedItem();
+        if(verify!=null){
+            verify.setNome(txtNome.getText());
+            verify.setPreco(Double.parseDouble(txtPreco.getText()));
+            verify.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+            tableViewProdutos.refresh();
+            txtNome.clear();
+            txtPreco.clear();
+            txtQuantidade.clear();
+            tableViewProdutos.getSelectionModel().clearSelection();
+        }
+        else {
+            tableViewProdutos.getSelectionModel().clearSelection();
+            verify = new Produto();
+            verify.setNome(txtNome.getText());
+            verify.setPreco(Double.parseDouble(txtPreco.getText()));
+            verify.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+            array.add(verify);
+            txtNome.clear();
+            txtPreco.clear();
+            txtQuantidade.clear();
+            carregarProdutos();
+        }
+        calcularValorTotalEstoque();
+    }
+
+    public void atualizarItem(){
+        Produto aux = tableViewProdutos.getSelectionModel().getSelectedItem();
+        if(aux!=null){
+            txtNome.setText(aux.getNome());
+            txtPreco.setText(Double.toString(aux.getPreco()));
+            txtQuantidade.setText(Integer.toString(aux.getQuantidade()));
+        }
+        else {
+            System.out.println("Errado");
+        }
+    }
+
+    public void deletarItem(){
+        Produto produto = tableViewProdutos.getSelectionModel().getSelectedItem();
+        if(produto != null){
+            tableViewProdutos.getItems().remove(produto);
+        }
+        else {
+            System.out.println("Errado");
+        }
+        calcularValorTotalEstoque();
+        tableViewProdutos.getSelectionModel().clearSelection();
     }
 
     public void fechar(){

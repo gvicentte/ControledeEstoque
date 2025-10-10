@@ -20,7 +20,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(PathFXML.getPath("TelaPrincipal.fxml"));
-        Scene scene = new Scene(root, 700, 500);
+        Scene scene = new Scene(root, 1000, 700);
         stage.setTitle("Controle de Estoque!");
         stage.setScene(scene);
         stage.show();

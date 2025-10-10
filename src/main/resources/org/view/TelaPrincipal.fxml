@@ -5,11 +5,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.controledeestoque.controller.TelaPrincipalController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="593.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.controledeestoque.controller.TelaPrincipalController">
    <children>
       <VBox alignment="CENTER" prefHeight="190.0" prefWidth="600.0" style="-fx-background-color: #3d3d3d;">
          <children>
@@ -39,12 +43,97 @@
             </Label>
          </children>
       </VBox>
+      <VBox prefHeight="346.0" prefWidth="819.0">
+         <children>
+            <GridPane prefHeight="216.0" prefWidth="819.0" style="-fx-border-color: #3d3d3d;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Nome do Produto">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Preço (R$)" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Quantidade" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="txtNome" style="-fx-border-color: #3e3e3e;" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtPreco" style="-fx-border-color: #3e3e3e;" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="txtQuantidade" style="-fx-border-color: #3e3e3e;" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets bottom="15.0" left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
       <HBox alignment="CENTER" prefHeight="190.0" prefWidth="600.0" style="-fx-background-color: #3d3d3d;">
          <children>
-            <Button mnemonicParsing="false" onAction="#fechar" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #062575;" text="Fechar" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#fechar" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #062575;" text="Fechar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#btnSalvar" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #133819;" text="Salvar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#atualizarItem" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #444744;" text="Selecionar" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#deletarItem" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #521b13;" text="Deletar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="35.0" />
+               </HBox.margin>
             </Button>
          </children>
       </HBox>
