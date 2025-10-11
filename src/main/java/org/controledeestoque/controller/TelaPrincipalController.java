@@ -108,7 +108,7 @@ public class TelaPrincipalController implements Initializable {
             txtQuantidade.setText(Integer.toString(aux.getQuantidade()));
         }
         else {
-            System.out.println("Errado");
+            System.out.println("Nenhum item foi selecionado!");
         }
     }
 
@@ -118,7 +118,7 @@ public class TelaPrincipalController implements Initializable {
             tableViewProdutos.getItems().remove(produto);
         }
         else {
-            System.out.println("Errado");
+            System.out.println("Nenhum item foi selecionado!");
         }
         calcularValorTotalEstoque();
         tableViewProdutos.getSelectionModel().clearSelection();
